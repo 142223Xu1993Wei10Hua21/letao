@@ -1,6 +1,4 @@
-/**
- * Created by Jepson on 2018/4/6.
- */
+
 
 // 防止全局变量污染, 等待dom渲染再执行
 $(function() {
