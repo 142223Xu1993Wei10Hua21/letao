@@ -1,5 +1,9 @@
+/**
+ * Created by Jepson on 2018/4/6.
+ */
+
 // 防止全局变量污染, 等待dom渲染再执行
-$(function () {
+$(function() {
 
   // 1. 进行表单校验
   //    校验要求: (1) 用户名不能为空
@@ -60,8 +64,8 @@ $(function () {
 
   // 表单校验插件有一个特点, 在表单提交的时候进行校验
   // 如果校验成功, 继续提交, 需要阻止这次默认的提交, 通过 ajax 进行请求提交
-  // 如果校验失败, 阻止默认的提交
-  $('#form').on("success.form.bv", function (e) {
+  // 如果校验失败, 默认会阻止提交
+  $('#form').on("success.form.bv", function( e ) {
     // 阻止默认的表单提交
     e.preventDefault();
 
@@ -73,20 +77,20 @@ $(function () {
       url: "/employee/employeeLogin",
       dataType: "json",
       data: $('#form').serialize(),
-      success: function (info) {
-        console.log(info);
+      success: function( info ) {
+        console.log( info )
 
-        if (info.success) {
+        if ( info.success ) {
           // alert( "登录成功" );
           location.href = "index.html";
         }
 
-        if (info.error === 1000) {
+        if ( info.error === 1000 ) {
           // alert( "用户名不存在" )
           $('#form').data("bootstrapValidator").updateStatus("username", "INVALID", "callback");
         }
 
-        if (info.error === 1001) {
+        if ( info.error === 1001 ) {
           // alert( "密码错误" );
           // updateStatus
           // 参数1: 字段名称
@@ -102,8 +106,8 @@ $(function () {
 
 
   // 3. 重置功能实现
-  $('[type="reset"]').click(function () {
-    console.log(1111);
+  $('[type="reset"]').click(function() {
+    console.log( 1111 );
     // 除了重置文本, 还要重置校验状态
     $('#form').data("bootstrapValidator").resetForm();
   });

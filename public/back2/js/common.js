@@ -28,24 +28,30 @@ $(document).ajaxStop(function() {
   }, 500)
 });
 
-//检查是否登陆
-if(location.href.indexOf("login.html") === -1){
 
+// 在一进入页面进行登录状态获取
+// 如果后端响应头中设置了 Content-Type: application/json
+// jquery 会自动识别, 将返回数据类型, 当成json字符串解析成对象
+
+if ( location.href.indexOf("login.html") === -1 ) {
   $.ajax({
-    url:"/employee/checkRootLogin",
-    type:"get",
-    success:function (info) {
-      console.log(info);
-      if(info.success){
-        console.log("登陆");
-        //登陆的话就什么都不用干
+    url: "/employee/checkRootLogin",
+    type: "get",
+    success: function( info ) {
+      console.log( info )
+      if ( info.success ) {
+        console.log( "登陆了" );
+        // 啥也不用干
       }
-      if(info.error === 400){
-        location.href="login.html";
+
+      if ( info.error === 400 ) {
+        // 进行拦截, 拦截到登录页
+        location.href = "login.html";
       }
     }
-  });
+  })
 }
+
 
 
 $(function() {
@@ -66,12 +72,11 @@ $(function() {
   $('.icon_logout').click(function() {
     // 让模态框显示
     $('#logoutModal').modal("show");
-  });
+  })
 
-  // 4. 在外面注册 logoutBtn 退出按钮, 点击事假
+  // 4. 在外面注册 logoutBtn 退出按钮, 点击事件
   $('#logoutBtn').click(function() {
     console.log("hehe");
-
 
     // 访问退出接口, 进行退出
      $.ajax({
@@ -86,7 +91,4 @@ $(function() {
        }
      })
   })
-});
-
-
-
+})
