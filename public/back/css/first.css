@@ -1,0 +1,12 @@
+.container-fluid .table tr th,
+.container-fluid .table tr td{
+  text-align: center;
+  vertical-align: middle;
+}
+.lt_aside .nav a.current {
+  background-color: #1D1F21;
+  border-left: 3px solid #006699;
+}
+.mb_20{
+  margin-bottom: 20px;
+}
