@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="lib/fa/css/font-awesome.min.css">
   <link rel="stylesheet" href="lib/mui/css/mui.css">
   <link rel="stylesheet" href="css/common.css">
-  <link rel="stylesheet" href="css/index.css">
+  <link rel="stylesheet" href="css/category.css">
 </head>
 <body>
 <!--大容器 全部包容-->
@@ -23,23 +23,57 @@
     <a class="icon_right" href="search.html"><i class="fa fa-search"></i></a>
   </div>
   <!--主体-->
-  <div class="lt_main"></div>
+  <div class="lt_main">
+    <!-- 添加区域滚动的容器 -->
+    <!--左边-->
+    <div class="mui-scroll-wrapper nav-left" data-scroll="1">
+      <ul>
+      </ul>
+    </div>
+    <!--右边-->
+    <div class="mui-scroll-wrapper nav-right" data-scroll="2">
+
+    </div>
+
+
+  </div>
   <!--底部-->
   <div class="lt_footer">
     <ul>
-      <li><a class="current" href="index.html"><i class="fa fa-home"></i><p>首页</p></a></li>
-      <li><a href="category.html"><i class="fa fa-bars"></i><p>分类页</p></a></li>
-      <li><a href="cart.html"><i class="fa fa-shopping-cart"></i><p>购物车</p></a></li>
-      <li><a href="user.html"><i class="fa fa-user"></i><p>会员中心</p></a></li>
+      <li><a href="index.html"><i class="fa fa-home"></i>
+        <p>首页</p></a></li>
+      <li><a class="current" href="category.html"><i class="fa fa-bars"></i>
+        <p>分类页</p></a></li>
+      <li><a href="cart.html"><i class="fa fa-shopping-cart"></i>
+        <p>购物车</p></a></li>
+      <li><a href="user.html"><i class="fa fa-user"></i>
+        <p>会员中心</p></a></li>
     </ul>
   </div>
 </div>
 
 
+<!--左侧模板-->
+<script type="text/html" id="left_tpl">
+  {{each rows v i}}
+  <li><a data-id="{{v.id}}" href="#" class="{{ i === 0 ? 'current' : '' }}">{{v.categoryName}}</a></li>
+  {{/each}}
+</script>
 
+<!--右侧模板-->
+<script type="text/html" id="right_tpl">
+  {{each rows v i}}
+  <div class="right-box" data-id="{{v.categoryId}}">
+    <img src="{{v.brandLogo}}" alt="">
+    <p>{{v.brandName}}</p>
+  </div>
+  {{/each}}
+</script>
 
 <script src="lib/mui/js/mui.min.js"></script>
 <script src="lib/zepto/zepto.min.js"></script>
+<script src="lib/artTemplate/template-web.js"></script>
 <script src="js/common.js"></script>
+<script src="js/category.js"></script>
 </body>
 </html>
